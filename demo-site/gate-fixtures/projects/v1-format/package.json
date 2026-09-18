@@ -1,0 +1,9 @@
+{
+  "name": "gate-approach-v1-format",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Gate fixture: UNRECOGNISED lockfile FORMAT (lockfileVersion 1). Its only dependency is the NON-allowlisted chain-pkg-evil. The gate must REFUSE (fail closed) because it cannot inspect a v1 lockfile's dependency set - and must write NO approval record.",
+  "dependencies": {
+    "chain-pkg-evil": "file:../../tarballs/chain-pkg-evil-1.0.0.tgz"
+  }
+}

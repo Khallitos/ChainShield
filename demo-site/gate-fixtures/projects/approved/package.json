@@ -1,0 +1,9 @@
+{
+  "name": "gate-approach-approved",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Gate fixture: APPROVED path. Depends only on the allowlisted benign fixture chain-pkg-good.",
+  "dependencies": {
+    "chain-pkg-good": "file:../../tarballs/chain-pkg-good-1.0.0.tgz"
+  }
+}

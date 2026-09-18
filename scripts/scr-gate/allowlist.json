@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "scope": "Local-tarball allowlist (proof of mechanism, not production).",
+  "description": "Identity-bound approval list. An install is approved ONLY if every resolved artifact's name+version+sha256-of-tarball-bytes matches an entry here. This is the identity-bound approval basis: replaying a package NAME without the exact bytes is refused.",
+  "entries": {
+    "chain-pkg-good": {
+      "version": "1.0.0",
+      "sha256": "492d7cba52f06d1942d56a2e44a38224d52048d4ad2f0588749f72f896efd481",
+      "note": "Synthetic benign fixture package. postinstall writes a harmless MARKER_GOOD.txt. This is the ONLY approved artifact."
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "gate-approach-blocked",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Gate fixture: BLOCKED path. Depends on chain-pkg-evil (NOT allowlisted). The gate must refuse before any hook runs.",
+  "dependencies": {
+    "chain-pkg-evil": "file:../../tarballs/chain-pkg-evil-1.0.0.tgz"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "acme-ledger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LAB ONLY — benign twin of acme-leder (intended spelling).",
+  "type": "module",
+  "main": "index.mjs"
+}

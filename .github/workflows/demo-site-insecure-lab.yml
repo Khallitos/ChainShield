@@ -1,0 +1,32 @@
+# LAB ONLY: demonstrates insecure CI/CD patterns for ATK3 teaching.
+# Trigger manually from the Actions tab (workflow_dispatch). Not enabled on every push.
+# Patterns: unpinned action ref, broad permissions.
+
+name: demo-site insecure lab (ATK3)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  lab-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: demo-site
+    steps:
+      - uses: actions/checkout@main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install demo-site
+        run: |
+          npm ci
+
+      - name: Demo step
+        run: echo "Lab workflow intentionally uses risky patterns, see workflow file comments."

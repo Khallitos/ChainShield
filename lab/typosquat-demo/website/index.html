@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab, Typosquat demo collector</title>
+    <style>
+      :root {
+        font-family: system-ui, sans-serif;
+        color: #0f172a;
+        background: #f1f5f9;
+      }
+      body {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      h1 {
+        font-size: 1.25rem;
+      }
+      .banner {
+        background: #fef3c7;
+        border: 1px solid #fcd34d;
+        padding: 12px 14px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+        font-size: 0.9rem;
+      }
+      pre {
+        background: #0b1020;
+        color: #e2e8f0;
+        padding: 14px;
+        border-radius: 10px;
+        overflow: auto;
+        font-size: 0.82rem;
+      }
+      .muted {
+        color: #64748b;
+        font-size: 0.88rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Typosquat lab, attacker collector (localhost only)</h1>
+    <p class="muted">
+      This page polls <code>/api/events</code>. When you run <code>npm install</code> in
+      <code>victim-site</code>, the typo package’s <code>postinstall</code> script POSTs a
+      <strong>demo-only</strong> payload here (see <code>lab/typosquat-demo/DEMO.txt</code>).
+    </p>
+    <div class="banner">
+      <strong>Educational use only.</strong> Set <code>DEMO_SECRET</code> yourself to a fake
+      value. Do not use real production credentials.
+    </div>
+    <pre id="out">Waiting for events…</pre>
+    <script>
+      async function poll() {
+        try {
+          const r = await fetch("/api/events", { cache: "no-store" });
+          const j = await r.json();
+          document.getElementById("out").textContent = JSON.stringify(j, null, 2);
+        } catch (e) {
+          document.getElementById("out").textContent = String(e);
+        }
+      }
+      poll();
+      setInterval(poll, 1200);
+    </script>
+  </body>
+</html>

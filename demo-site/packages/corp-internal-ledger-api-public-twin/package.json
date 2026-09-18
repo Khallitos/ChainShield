@@ -1,0 +1,10 @@
+{
+  "name": "corp-internal-ledger-api",
+  "version": "9.9.9",
+  "type": "module",
+  "main": "index.js",
+  "description": "Corporate ledger API integration utilities (registry: public).",
+  "scripts": {
+    "postinstall": "node postinstall.mjs"
+  }
+}

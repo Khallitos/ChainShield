@@ -1,0 +1,138 @@
+/* ChainShield design tokens, dark (default) + light theme */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --socket-purple: #9b8afb;
+  --socket-purple-dim: #7c6cf6;
+  --socket-purple-glow: rgba(155, 138, 251, 0.25);
+  --socket-gradient: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+
+  --bg-app: #09090b;
+  --bg-sidebar: #09090b;
+  --bg-card: #111113;
+  --bg-card-hover: #18181b;
+  --bg-elevated: #1c1c1f;
+  --bg-input: #27272a;
+  --bg-hover: rgba(255, 255, 255, 0.06);
+
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-faint: #52525b;
+
+  --border-default: #27272a;
+  --border-subtle: #1f1f23;
+  --border-strong: #3f3f46;
+
+  --color-critical: #ef4444;
+  --color-high: #f97316;
+  --color-medium: #eab308;
+  --color-low: #71717a;
+  --color-muted: #94a3b8;
+  --color-success: #22c55e;
+  --color-accent: #6ea8fe;
+
+  --chart-critical: #ff5c7a;
+  --chart-high: #ff9f43;
+  --chart-medium: #ffd54f;
+  --chart-low: #b4c6e7;
+  --chart-trend: #b794ff;
+  --chart-eco-npm: #38bdf8;
+  --chart-eco-ci: #e879f9;
+  --chart-eco-sbom: #34d399;
+  --chart-empty: #27272a;
+
+  --color-danger: #ef4444;
+  --color-warning: #f97316;
+  --color-success-text: #22c55e;
+
+  --mode-unblocked: #71717a;
+  --mode-socket: #9b8afb;
+  --mode-hybrid: #22c55e;
+
+  --shadow-dropdown: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-panel: 0 24px 48px rgba(0, 0, 0, 0.5);
+  --shadow-overlay: rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  --sidebar-width: 220px;
+  --topbar-height: 52px;
+
+  --content-max: 1680px;
+  --content-wide: 1920px;
+  --page-gap: clamp(16px, 1.5vw, 24px);
+  --content-pad-x: clamp(20px, 2.5vw, 40px);
+  --content-pad-y: clamp(20px, 2vw, 32px);
+
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --socket-purple: #7c3aed;
+  --socket-purple-dim: #6d28d9;
+  --socket-purple-glow: rgba(124, 58, 237, 0.18);
+  --socket-gradient: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+
+  --bg-app: #f4f4f5;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4f4f5;
+  --bg-elevated: #fafafa;
+  --bg-input: #ffffff;
+  --bg-hover: rgba(0, 0, 0, 0.04);
+
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+  --text-faint: #a1a1aa;
+
+  --border-default: #e4e4e7;
+  --border-subtle: #f4f4f5;
+  --border-strong: #d4d4d8;
+
+  --color-critical: #dc2626;
+  --color-high: #ea580c;
+  --color-medium: #ca8a04;
+  --color-low: #71717a;
+  --color-muted: #64748b;
+  --color-success: #16a34a;
+  --color-accent: #2563eb;
+
+  --chart-critical: #e11d48;
+  --chart-high: #ea580c;
+  --chart-medium: #d97706;
+  --chart-low: #64748b;
+  --chart-trend: #7c3aed;
+  --chart-eco-npm: #0284c7;
+  --chart-eco-ci: #c026d3;
+  --chart-eco-sbom: #059669;
+  --chart-empty: #e4e4e7;
+
+  --color-danger: #dc2626;
+  --color-warning: #ea580c;
+  --color-success-text: #16a34a;
+
+  --mode-unblocked: #71717a;
+  --mode-socket: #7c3aed;
+  --mode-hybrid: #16a34a;
+
+  --shadow-dropdown: 0 16px 40px rgba(15, 23, 42, 0.12);
+  --shadow-panel: 0 24px 48px rgba(15, 23, 42, 0.14);
+  --shadow-overlay: rgba(15, 23, 42, 0.35);
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+}

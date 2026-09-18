@@ -1,0 +1,10 @@
+{
+  "name": "acme-leder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LAB ONLY — typo-squat demo package. Do not publish to npm.",
+  "type": "module",
+  "scripts": {
+    "postinstall": "node postinstall.mjs"
+  }
+}

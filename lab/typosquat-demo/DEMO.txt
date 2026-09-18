@@ -1,0 +1,35 @@
+Typosquatting lab demo (masters / classroom, reproducible)
+===========================================================
+
+What this proves
+  A dependency typo pulls a local malicious-named package. Its npm postinstall
+  script runs during docker build/runtime and POSTs a demo payload to the
+  collector. No public npm publish; dependencies are file: paths only.
+
+Docker (recommended for grading / reproducibility)
+--------------------------------------------------
+From this folder (lab/typosquat-demo):
+
+  DEMO_SECRET='sk-demo-FAKE-not-real' docker compose up --build
+
+Then open in a browser:
+
+  http://127.0.0.1:5055/
+
+You should see the ingest event after victim-install completes. The collector
+container keeps running; victim-install exits when npm install finishes.
+
+One-liner re-run install only (collector already up):
+
+  docker compose run --rm -e DEMO_SECRET='sk-demo-again' victim-install
+
+Native (no Docker)
+------------------
+Terminal A:  node collector/server.mjs
+Browser:     http://127.0.0.1:5055/
+Terminal B:  cd victim-site && export DEMO_SECRET='sk-demo-FAKE' && npm install
+
+Safety
+------
+  - Do not publish packages/acme-leder to npm.
+  - Use fake DEMO_SECRET values only; this simulates exfiltration of env-based secrets.

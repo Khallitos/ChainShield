@@ -1,0 +1,9 @@
+{
+  "name": "victim-internal-dashboard",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Fake internal app that depends on the typo-named local package (lab).",
+  "dependencies": {
+    "acme-leder": "file:../packages/acme-leder"
+  }
+}

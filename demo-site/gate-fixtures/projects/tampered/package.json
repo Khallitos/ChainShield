@@ -1,0 +1,9 @@
+{
+  "name": "gate-approach-tampered",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Gate fixture: TAMPERED path. Depends on the APPROVED name 'chain-pkg-good' but via a DIFFERENT tarball (different bytes). Proves approval is bound to bytes, not to a replayable name.",
+  "dependencies": {
+    "chain-pkg-good": "file:../../tarballs/chain-pkg-good-1.0.0-tampered.tgz"
+  }
+}

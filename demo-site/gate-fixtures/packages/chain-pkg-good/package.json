@@ -1,0 +1,10 @@
+{
+  "name": "chain-pkg-good",
+  "version": "1.0.0",
+  "description": "Synthetic benign fixture package - APPROVED path (writes a harmless marker file).",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "postinstall": "node postinstall.mjs"
+  }
+}

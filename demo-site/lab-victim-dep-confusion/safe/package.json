@@ -1,0 +1,9 @@
+{
+  "name": "lab-victim-dep-confusion-safe",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Victim app — SAFE: internal registry wins (v1.4.2).",
+  "dependencies": {
+    "corp-internal-ledger-api": "file:../../packages/corp-internal-ledger-api"
+  }
+}

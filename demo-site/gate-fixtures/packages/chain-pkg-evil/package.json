@@ -1,0 +1,10 @@
+{
+  "name": "chain-pkg-evil",
+  "version": "1.0.0",
+  "description": "Synthetic BENIGN fixture package - NOT approved path (would write a marker; the gate must block it BEFORE this runs).",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "postinstall": "node postinstall.mjs"
+  }
+}

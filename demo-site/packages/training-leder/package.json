@@ -1,0 +1,11 @@
+{
+  "name": "training-leder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "description": "Finance Training Helper — optional workspace integration utilities for Acme training portals (local package).",
+  "scripts": {
+    "postinstall": "node postinstall.mjs"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "corp-internal-ledger-api",
+  "version": "1.4.2",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "description": "Internal corporate ledger synchronisation API (trusted internal source).",
+  "scripts": {
+    "postinstall": "node postinstall.mjs"
+  }
+}

@@ -1,0 +1,61 @@
+# LAB ATK3: HARDENED workflow example
+# Same pipeline as vulnerable.yml with all five rule violations fixed.
+# Used as a contrast target for the backend /v1/scan/ci-cd-injection API.
+#
+# Fixes applied:
+#   RULE-01: Untrusted PR title stored in env var, NOT interpolated into run:
+#   RULE-03: All actions SHA-pinned (full commit SHA)
+#   RULE-04: Explicit least-privilege permissions at job level
+#   RULE-05: Deploy script downloaded, checksum verified, then executed
+
+name: Hardened CI
+
+on:
+  pull_request:
+    branches: ["main"]
+
+# Deny everything at the top level; grant per-job only what is needed
+permissions: {}
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read          # checkout only
+      pull-requests: read     # read PR metadata
+
+    steps:
+      - name: Checkout code
+        # FIXED RULE-03: pinned to full SHA (tag: v4)
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+
+      - name: Setup Node
+        # FIXED RULE-03: pinned to full SHA (tag: v4)
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8
+        with:
+          node-version: "20"
+
+      - name: Print PR info
+        # FIXED RULE-01: untrusted values placed in env vars, not interpolated in run:
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BRANCH: ${{ github.head_ref }}
+        run: |
+          echo "Building PR: $PR_TITLE"
+          echo "Branch: $PR_BRANCH"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+
+      - name: Deploy
+        # FIXED RULE-05: download → verify checksum → execute (no pipe-to-shell)
+        run: |
+          curl -fsSL https://deploy.example.com/deploy.sh -o deploy.sh
+          curl -fsSL https://deploy.example.com/deploy.sh.sha256 -o deploy.sh.sha256
+          sha256sum -c deploy.sh.sha256
+          bash deploy.sh

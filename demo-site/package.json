@@ -1,0 +1,24 @@
+{
+  "name": "finance-employee-trainer-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "LAB: normal-looking training site with intentional supply-chain weaknesses for class demos.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "corp-internal-ledger-api": "file:./packages/corp-internal-ledger-api-public-twin",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "training-ledger": "file:./packages/training-ledger",
+    "updates": "^17.17.3",
+    "upgrade": "^1.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}

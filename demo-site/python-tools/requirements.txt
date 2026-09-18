@@ -1,0 +1,10 @@
+# Finance batch jobs (demo). Pins a common public library.
+requests==2.31.0
+
+# --- ATK2 (dependency confusion) teaching note ---
+# A real org might install an internal package name such as:
+#   corp-internal-ledger-sync
+# If private index / public index precedence is misconfigured, a malicious public
+# package with the same name could be pulled. In this repo we do NOT install that
+# name here (to avoid accidental network installs). Scanners in later phases will
+# still flag the *pattern* in documentation and dependency manifests across the repo.

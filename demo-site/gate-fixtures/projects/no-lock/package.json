@@ -1,0 +1,9 @@
+{
+  "name": "gate-approach-no-lock",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Gate fixture: UNSUPPORTED path. No package-lock.json (unpinned install). The gate must REFUSE before anything runs.",
+  "dependencies": {
+    "chain-pkg-good": "file:../../tarballs/chain-pkg-good-1.0.0.tgz"
+  }
+}

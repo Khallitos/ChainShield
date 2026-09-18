@@ -1,0 +1,9 @@
+{
+  "name": "lab-victim-typo-only",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Minimal victim app: depends only on the lab typosquat package training-leder.",
+  "dependencies": {
+    "training-leder": "file:../packages/training-leder"
+  }
+}

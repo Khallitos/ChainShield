@@ -1,0 +1,45 @@
+# Typosquatting lab: 100% local. No packages are published to npm.
+# Uses only file: dependencies copied into the image.
+#
+# Run from this directory:
+#   DEMO_SECRET='sk-demo-FAKE' docker compose up --build
+# Then open http://127.0.0.1:5055/, victim-install exits after npm install; collector stays up.
+
+services:
+  collector:
+    build:
+      context: .
+      dockerfile: docker/collector.Dockerfile
+    ports:
+      - "5055:5055"
+    environment:
+      DOCKER: "1"
+      LISTEN_HOST: "0.0.0.0"
+      DEMO_COLLECTOR_PORT: "5055"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:5055/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+      start_period: 4s
+
+  victim-install:
+    build:
+      context: .
+      dockerfile: docker/victim.Dockerfile
+    depends_on:
+      collector:
+        condition: service_healthy
+    environment:
+      DEMO_SECRET: ${DEMO_SECRET:-sk-demo-compose-default}
+      DEMO_COLLECTOR_HOST: collector
+      DEMO_COLLECTOR_PORT: "5055"
+    working_dir: /app/victim-site
+    command: ["npm", "install"]
+    restart: "no"

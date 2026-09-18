@@ -1,0 +1,9 @@
+{
+  "name": "lab-victim-dep-confusion-confused",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Victim app — CONFUSED: public registry version 9.9.9 wins over internal 1.4.2.",
+  "dependencies": {
+    "corp-internal-ledger-api": "file:../../packages/corp-internal-ledger-api-public-twin"
+  }
+}

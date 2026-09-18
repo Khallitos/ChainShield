@@ -1,0 +1,267 @@
+/* ── Responsive layout (desktop-first, fluid width) ─────────── */
+
+.content-inner {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.page-shell {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-gap);
+}
+
+.page-shell,
+.socket-grid-2,
+.deps-layout,
+.scan-main-grid,
+.scan-pipeline,
+.scan-defense-grid {
+  min-width: 0;
+}
+
+.socket-grid-2 > *,
+.deps-layout > *,
+.scan-main-grid > * {
+  min-width: 0;
+}
+
+/* ── Desktop (1024px+) ──────────────────────────────────────── */
+
+@media (min-width: 1024px) {
+  .socket-overview,
+  .scan-page,
+  .deps-page,
+  .repos-page,
+  .pkg-detail-page {
+    width: 100%;
+    max-width: none;
+  }
+
+  .socket-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 1.2vw, 24px);
+  }
+
+  .socket-card {
+    min-height: 240px;
+  }
+
+  .deps-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+    gap: clamp(16px, 1.2vw, 24px);
+  }
+
+  .deps-table-scroll {
+    max-height: calc(100vh - var(--topbar-height) - 200px);
+    overscroll-behavior: contain;
+  }
+
+  .scan-main-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.55fr);
+    gap: clamp(16px, 1.2vw, 24px);
+    align-items: stretch;
+  }
+
+  .scan-findings-list {
+    max-height: min(640px, calc(100vh - var(--topbar-height) - 320px));
+  }
+
+  .scan-pipeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(8px, 1vw, 16px);
+    padding: clamp(16px, 1.5vw, 24px);
+  }
+
+  .scan-verdict-main {
+    gap: clamp(24px, 3vw, 48px);
+  }
+
+  .scan-rec-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .repos-table-wrap {
+    max-height: calc(100vh - var(--topbar-height) - 220px);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .repos-table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--bg-elevated);
+  }
+
+  .pkg-detail-page {
+    max-width: none;
+  }
+
+  .pkg-hero-header-row {
+    gap: clamp(16px, 2vw, 32px);
+  }
+
+  .pkg-gauge-row {
+    gap: clamp(8px, 1vw, 16px);
+  }
+
+  .readme-doc {
+    max-width: min(920px, 55vw);
+  }
+}
+
+/* ── Large desktop (1280px+) ─────────────────────────────────── */
+
+@media (min-width: 1280px) {
+  :root {
+    --sidebar-width: 232px;
+  }
+
+  .socket-overview .socket-grid-2:first-of-type {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+
+  .scan-defense-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .deps-layout {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+
+  .page-title {
+    font-size: clamp(22px, 1.4vw, 26px);
+  }
+
+  .scan-page-title {
+    font-size: clamp(24px, 1.6vw, 28px);
+  }
+}
+
+/* ── Ultra-wide (1536px+) ────────────────────────────────────── */
+
+@media (min-width: 1536px) {
+  .content-inner {
+    max-width: var(--content-wide);
+  }
+
+  .scan-page {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--page-gap);
+    align-content: start;
+  }
+
+  .scan-page > .scan-target-bar,
+  .scan-page > .loading-bar,
+  .scan-page > .gh-connect-error,
+  .scan-page > .scan-pipeline,
+  .scan-page > .scan-verdict-hero,
+  .scan-page > .scan-main-grid,
+  .scan-page > .scan-defense-compare,
+  .scan-page > .scan-rec-grid {
+    grid-column: 1 / -1;
+  }
+
+  .scan-page > .scan-main-grid {
+    grid-template-columns: minmax(0, 1.65fr) minmax(320px, 0.35fr);
+  }
+
+  .deps-page .deps-layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+  }
+}
+
+/* ── Tablet ──────────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .topbar-mode-tag {
+    display: none;
+  }
+
+  .repo-selector-trigger {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: 64px;
+  }
+
+  .sidebar-brand-name,
+  .sidebar-divider-label {
+    display: none;
+  }
+
+  .sidebar-item {
+    justify-content: center;
+    padding: 10px;
+    font-size: 0;
+    gap: 0;
+  }
+
+  .sidebar-item .nav-active-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    margin: 0;
+  }
+
+  .sidebar-mode {
+    font-size: 0;
+  }
+
+  .topbar {
+    padding: 0 12px;
+  }
+}
+
+/* ── Interaction & perf ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.deps-table tbody tr,
+.repos-table tbody tr,
+.scan-finding-main,
+.sidebar-item,
+.socket-card-action {
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.socket-card,
+.deps-stat-card,
+.scan-layer-card {
+  contain: layout style;
+}
+
+.content {
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+}
+
+.page-loader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 48px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.page-loader .loading-bar {
+  width: min(280px, 60%);
+}
