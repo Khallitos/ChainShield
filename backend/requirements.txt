@@ -1,0 +1,15 @@
+# Python 3.10-3.13 (use pydantic>=2.10 for 3.13 pre-built wheels)
+fastapi>=0.115.0,<0.116
+uvicorn[standard]>=0.30.1,<0.31
+pydantic>=2.10.0,<3
+python-multipart>=0.0.9
+websockets>=12.0
+httpx>=0.27.0
+croniter>=2.0.0
+pyyaml>=6.0.1
+itsdangerous>=2.2.0
+scikit-learn>=1.3.0
+# joblib is no longer used: the model ships as plain arrays (app/ml/package_model.py)
+rapidfuzz>=3.9.0
+numpy>=1.26
+pygments>=2.17

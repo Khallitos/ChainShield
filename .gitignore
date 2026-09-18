@@ -1,0 +1,31 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+**/.env
+backend/.env
+node_modules/
+frontend/node_modules/
+frontend/dist/
+lab/**/node_modules/
+demo-site/attack-exfil-report.json
+demo-site/lab-victim-typo-only/node_modules/
+demo-site/lab-victim-dep-confusion/safe/node_modules/
+demo-site/lab-victim-dep-confusion/confused/node_modules/
+
+# camera-ready research inputs (downloaded by research/scripts/00_fetch_inputs.py; contain malicious code)
+research/raw/
+.venv/
+
+# local operator token (scripts/setup-local-token.py)
+backend/.chainshield-local-token
+backend/.chainshield-session-secret
+frontend/.env.local
+backend/.cache/
+demo-site/.package.json.atk2.bak
+
+# environment files of any kind (including templates) are never committed
+.env*
+**/.env*

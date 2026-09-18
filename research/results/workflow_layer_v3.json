@@ -1,0 +1,56 @@
+{
+  "protocol": "Step 6: the workflow layer on 2,722 real GitHub Actions workflows.\n\nData: \"Unpacking Security Scanners for GitHub Actions Workflows\" (arXiv 2601.14455),\nrepository sparkrew/github-actions-security at commit a673bc0: workflow files from 388\nrepositories of large software organisations and the normalised findings of nine scanners.\nNo ground-truth labels exist, so ChainShield's five rules are compared per weakness class with\nzizmor, the only scanner in that study covering all ten weakness classes, and reported as\nagreement (precision/recall of ChainShield taking zizmor as reference, Cohen's kappa).\n\nRule mapping (ChainShield rule -> weakness class -> zizmor rules of that class):\n  RULE-01 untrusted context in run:          -> Injection Weakness (IW)\n  RULE-02 pull_request_target + PR checkout  -> Privileged Trigger Weakness (PTW)\n  RULE-03 unpinned action reference          -> Unpinned Dependency Weakness (UDW)\n  RULE-04 missing / write-all permissions    -> Excessive Permission Weakness (EPW)\n  RULE-05 remote-code download patterns      -> no zizmor class; counts only\n",
+  "workflows_in_dataset": 2722,
+  "unparsable_yaml": 0,
+  "workflows_evaluated": 2722,
+  "workflows_with_zizmor_output": 2438,
+  "per_rule": {
+    "RULE-01": {
+      "weakness_class": "injection-weakness",
+      "chainshield_flagged": 30,
+      "zizmor_flagged": 432,
+      "both": 30,
+      "precision_vs_zizmor": 1.0,
+      "recall_vs_zizmor": 0.0694,
+      "cohen_kappa": 0.1094
+    },
+    "RULE-02": {
+      "weakness_class": "privileged-trigger-weakness",
+      "chainshield_flagged": 37,
+      "zizmor_flagged": 184,
+      "both": 37,
+      "precision_vs_zizmor": 1.0,
+      "recall_vs_zizmor": 0.2011,
+      "cohen_kappa": 0.3176
+    },
+    "RULE-03": {
+      "weakness_class": "unpinned-dependency-weakness",
+      "chainshield_flagged": 1931,
+      "zizmor_flagged": 959,
+      "both": 921,
+      "precision_vs_zizmor": 0.477,
+      "recall_vs_zizmor": 0.9604,
+      "cohen_kappa": 0.2355
+    },
+    "RULE-04": {
+      "weakness_class": "excessive-permission-weakness",
+      "chainshield_flagged": 1116,
+      "zizmor_flagged": 1046,
+      "both": 930,
+      "precision_vs_zizmor": 0.8333,
+      "recall_vs_zizmor": 0.8891,
+      "cohen_kappa": 0.7492
+    },
+    "RULE-05": {
+      "weakness_class": null,
+      "chainshield_flagged": 77
+    }
+  },
+  "workflow_layer_actions": {
+    "warn": 2174,
+    "allow": 481,
+    "block": 67
+  },
+  "any_rule_flagged": 2241,
+  "critical_findings_workflows": 67
+}

@@ -1,0 +1,15 @@
+{
+  "policy_id": "declared-squatters-p2fix1",
+  "schema": "chainshield.declared_squatters/v1",
+  "description": "Curated, explicit DENYLIST of package names the ChainShield lab DECLARES to be squatters. This is a POLICY declaration input, deliberately separate from trusted-baseline membership: a name here is reported because a human/policy named it (with recorded provenance), NOT because of any edit-distance / similarity inference and NOT because of lockfile provenance. Hits are emitted with detection_basis='policy_denylist'. This file lives in the revised tree; the frozen data/trusted/baseline.json is not read or written here.",
+  "entries": {
+    "training-leder": {
+      "canonical": "training-ledger",
+      "squat_type": "typosquat",
+      "tier": "high",
+      "confidence": 0.95,
+      "conflict_with_baseline_membership": true,
+      "provenance": "Declared squatter in the ChainShield lab ATK1 demo fixture: app/attacks/typosquatting.py DEMO_REGISTRY['training-leder'] (trusted=False, masquerades_as='training-ledger') and demo-site/packages/training-leder. Listed here because the mechanically-built data/trusted/baseline.json (via app.services.baseline_builder, from demo-site/lab-victim-typo-only/package-lock.json) captured this squatter as a baseline member, so baseline membership alone cannot flag it and lockfile depth must not be used to. Added 2026-09-13 by the P2-FIX1 worker under the repair programme; see _work/repair-programme/p2-fix1/NOTES.md."
+    }
+  }
+}

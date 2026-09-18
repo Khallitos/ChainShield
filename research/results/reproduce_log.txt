@@ -1,0 +1,202 @@
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 01_build_label_index.py
+rows=13444 malicious=6420 benign=7024
+--- done in 1s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 02_build_dataset_v2.py
+train 10852 malicious 5200 benign 5652
+test 2592 malicious 1220 benign 1372
+columns 153
+--- done in 32s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 03_signal_vectors.py
+  2000/13444
+  4000/13444
+  6000/13444
+  8000/13444
+  10000/13444
+  12000/13444
+slot                         malicious  benign
+min_edit_distance                 5999    6554
+exact_trusted_match                  0       0
+version_gap_score                    0       0
+internal_namespace                   0       0
+public_high_version               1895       4
+typosquat_high                     293     251
+dep_confusion_signal                 0       0
+baseline_drift                     206     118
+ci_finding_count                     0       0
+ci_critical_count                    0       0
+workflow_injection_signal            0       0
+rule_score                        2127     319
+--- done in 34s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 04_parity_check_content_extractor.py
+packages whose .js/.json file counts match the table: 558
+features below 99% agreement on those: {'Number of words_x': 0.9785, 'lines_x': 0.9892, 'plus ratio mean': 0.9892, 'bracket ratio mean': 0.9803, 'bracket ratio max': 0.9892, 'bracket ratio q3': 0.9839, 'shannon mean ID source code': 0.9785, 'shannon std ID source code': 0.9785, 'shannon q3 ID source code': 0.9839, 'shannon mean string source code': 0.9785, 'shannon std string source code': 0.9785, 'shannon max string source code': 0.9892, 'shannon q3 string source code': 0.9839, 'homogeneous identifiers in source code': 0.9857, 'homogeneous strings in source code': 0.9875, 'heterogeneous strings in source code': 0.9821, 'URLs in source code': 0.0, 'URLs in metadata': 0.0}
+packages compared: 600; features with >=99% exact agreement: 110/141
+  0.000  URLs in source code  e.g. [('0g-storage-contracts$$2.2.0', 1.0, nan), ('30-days-of-javascript$$6.0.2', 1.0, nan)]
+  0.000  URLs in metadata  e.g. [('0g-storage-contracts$$2.2.0', 0.0, nan), ('30-days-of-javascript$$6.0.2', 1.0, nan)]
+  0.910  Number of words_x  e.g. [('@aluffyz##discord-botjs$$1.4.5', 9129.0, 3078.0), ('@sok-brand-sites##common-frontend-components$$de', 59510.0, 2631.0)]
+  0.910  shannon mean ID source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.3550130630797257, 0.09159695809544238), ('@sok-brand-sites##common-frontend-components$$de', 0.18998633193809705, 0.1289933073291253)]
+  0.910  shannon std ID source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.3226672882490994, 0.1344266820728275), ('@sok-brand-sites##common-frontend-components$$de', 0.20253183316521886, 0.1644358835715089)]
+  0.910  shannon mean string source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.18371521339577795, 0.14753920910443083), ('@sok-brand-sites##common-frontend-components$$de', 0.3794753609129475, 0.17372945073146556)]
+  0.910  shannon std string source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.24310355681896978, 0.19497817167249065), ('@sok-brand-sites##common-frontend-components$$de', 0.2032013257865915, 0.18704362432698313)]
+  0.913  bracket ratio mean  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.0028778347325440204, 8.131603181697225e-05), ('@sok-brand-sites##common-frontend-components$$de', 0.0014510134938782334, 0.00022604776057899142)]
+  0.917  bracket ratio q3  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.0031287815194758475, 0.0), ('@sok-brand-sites##common-frontend-components$$de', 0.002484475883609249, 0.0)]
+  0.917  homogeneous identifiers in source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 3650.0, 1154.0), ('@sok-brand-sites##common-frontend-components$$de', 15491.0, 632.0)]
+  0.918  heterogeneous strings in source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 100.0, 3.0), ('@sok-brand-sites##common-frontend-components$$de', 1164.0, 2.0)]
+  0.920  lines_x  e.g. [('@aluffyz##discord-botjs$$1.4.5', 3633.0, 1292.0), ('@sok-brand-sites##common-frontend-components$$de', 13540.0, 740.0)]
+  0.920  homogeneous strings in source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 828.0, 301.0), ('@sok-brand-sites##common-frontend-components$$de', 959.0, 145.0)]
+  0.922  plus ratio mean  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.0002518365424194785, 3.357394661742488e-05), ('@sok-brand-sites##common-frontend-components$$de', 0.0002942819034546215, 0.00016953441511398474)]
+  0.922  shannon q3 string source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.36096404744368116, 0.32501121082417705), ('@sok-brand-sites##common-frontend-components$$de', 0.4854752972273343, 0.336147408537819)]
+  0.923  plus ratio std  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.0008240677310732592, 0.00020422234447870473), ('@sok-brand-sites##common-frontend-components$$de', 0.0021909762325674656, 0.0022329532890989073)]
+  0.923  eq ratio mean  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.005934247349679518, 0.0009514010515588568), ('@sok-brand-sites##common-frontend-components$$de', 0.003527335207432502, 0.00039458109582566687)]
+  0.923  eq ratio std  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.00476333909699384, 0.0021896616176118144), ('@sok-brand-sites##common-frontend-components$$de', 0.003548221220713994, 0.0020652045872017115)]
+  0.923  bracket ratio std  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.003369201788314799, 0.0003144282147213055), ('@sok-brand-sites##common-frontend-components$$de', 0.0023712366910539377, 0.001466755779800916)]
+  0.930  .js  e.g. [('@aluffyz##discord-botjs$$1.4.5', 40.0, 37.0), ('@sok-brand-sites##common-frontend-components$$de', 207.0, 189.0)]
+  0.932  eq ratio q3  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.006996511767771942, 0.0), ('@sok-brand-sites##common-frontend-components$$de', 0.006044625576946306, 0.0)]
+  0.932  base64_x  e.g. [('@aluffyz##discord-botjs$$1.4.5', 3.0, 2.0), ('@sok-brand-sites##common-frontend-components$$de', 82.0, 2.0)]
+  0.933  shannon max ID source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.9211854965885544, 0.9046000163489059), ('@sok-brand-sites##common-frontend-components$$de', 0.6479181946455819, 0.5744174271404584)]
+  0.937  shannon q3 ID source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.7295739585136223, 0.20690842515181687), ('@sok-brand-sites##common-frontend-components$$de', 0.36096404744368116, 0.25162916738782287)]
+  0.943  sospicious token_x  e.g. [('@sok-brand-sites##common-frontend-components$$de', 17.0, 2.0), ('aploybro$$11.5.1', 9.0, 7.0)]
+  0.945  shannon max string source code  e.g. [('@sok-brand-sites##common-frontend-components$$de', 0.8288713632524444, 0.7076344750135477), ('aploybro$$11.5.1', 0.9361827922932322, 0.8962406251802889)]
+  0.947  plus ratio max  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.0047479466275838905, 0.0012422360248447205), ('aploybro$$11.5.1', 0.0032679738562091504, 0.0007109004739336493)]
+  0.947  eq ratio max  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.022727272727272728, 0.00922509225092251), ('aploybro$$11.5.1', 0.015625, 0.012437810945273632)]
+  0.970  bracket ratio max  e.g. [('@aluffyz##discord-botjs$$1.4.5', 0.015306122448979591, 0.0013837638376383763), ('@sok-brand-sites##common-frontend-components$$de', 0.018912529550827423, 0.015337423312883436)]
+  0.972  heteregeneous identifiers in source code  e.g. [('@aluffyz##discord-botjs$$1.4.5', 149.0, 6.0), ('@sok-brand-sites##common-frontend-components$$de', 1421.0, 6.0)]
+  0.985  plus ratio q3  e.g. [('custom-cafe-pdf$$2.0.0', 0.0011479990631517634, 0.0020242914979757085), ('discord-vilao$$1.0.0', 1.514884115152401e-06, 0.0)]
+--- done in 244s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 05_train_select_evaluate.py
+CV RandomForest {'precision': 0.9924, 'recall': 0.9531, 'f1': 0.9723, 'accuracy': 0.974, 'confusion': [[5614, 38], [244, 4956]], 'pr_auc': 0.9964}
+CV LogisticRegression {'precision': 0.9575, 'recall': 0.9138, 'f1': 0.9352, 'accuracy': 0.9393, 'confusion': [[5441, 211], [448, 4752]], 'pr_auc': 0.9698}
+CV DecisionTree {'precision': 0.9788, 'recall': 0.9513, 'f1': 0.9649, 'accuracy': 0.9668, 'confusion': [[5545, 107], [253, 4947]], 'pr_auc': 0.9571}
+CV GradientBoosting {'precision': 0.9852, 'recall': 0.9712, 'f1': 0.9781, 'accuracy': 0.9792, 'confusion': [[5576, 76], [150, 5050]], 'pr_auc': 0.9963}
+policy {'rule_weight': 0.3, 'ml_weight': 0.7, 'warn': 0.34, 'block': 0.38, 'oof_f1_at_warn': 0.9728}
+export parity max abs diff 2.220446049250313e-16
+TEST rules_only_warn_or_block {'precision': 0.8553, 'recall': 0.3246, 'f1': 0.4706, 'accuracy': 0.6562, 'confusion': [[1305, 67], [824, 396]], 'pr_auc': 0.6364}
+TEST rules_only_block {'precision': 0.8553, 'recall': 0.3246, 'f1': 0.4706, 'accuracy': 0.6562, 'confusion': [[1305, 67], [824, 396]]}
+TEST ml_only {'precision': 0.9966, 'recall': 0.9566, 'f1': 0.9762, 'accuracy': 0.978, 'confusion': [[1368, 4], [53, 1167]], 'pr_auc': 0.9977}
+TEST hybrid_warn_or_block {'precision': 0.9891, 'recall': 0.9631, 'f1': 0.9759, 'accuracy': 0.9776, 'confusion': [[1359, 13], [45, 1175]], 'pr_auc': 0.9968}
+TEST hybrid_block {'precision': 0.9923, 'recall': 0.9525, 'f1': 0.972, 'accuracy': 0.9742, 'confusion': [[1363, 9], [58, 1162]]}
+wrote results/evaluation_v3.json
+--- done in 101s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 06_workflow_layer_evaluation.py
+{
+  "workflows_in_dataset": 2722,
+  "unparsable_yaml": 0,
+  "workflows_evaluated": 2722,
+  "workflows_with_zizmor_output": 2438,
+  "per_rule": {
+    "RULE-01": {
+      "weakness_class": "injection-weakness",
+      "chainshield_flagged": 30,
+      "zizmor_flagged": 432,
+      "both": 30,
+      "precision_vs_zizmor": 1.0,
+      "recall_vs_zizmor": 0.0694,
+      "cohen_kappa": 0.1094
+    },
+    "RULE-02": {
+      "weakness_class": "privileged-trigger-weakness",
+      "chainshield_flagged": 37,
+      "zizmor_flagged": 184,
+      "both": 37,
+      "precision_vs_zizmor": 1.0,
+      "recall_vs_zizmor": 0.2011,
+      "cohen_kappa": 0.3176
+    },
+    "RULE-03": {
+      "weakness_class": "unpinned-dependency-weakness",
+      "chainshield_flagged": 1931,
+      "zizmor_flagged": 959,
+      "both": 921,
+      "precision_vs_zizmor": 0.477,
+      "recall_vs_zizmor": 0.9604,
+      "cohen_kappa": 0.2355
+    },
+    "RULE-04": {
+      "weakness_class": "excessive-permission-weakness",
+      "chainshield_flagged": 1116,
+      "zizmor_flagged": 1046,
+      "both": 930,
+      "precision_vs_zizmor": 0.8333,
+      "recall_vs_zizmor": 0.8891,
+      "cohen_kappa": 0.7492
+    },
+    "RULE-05": {
+      "weakness_class": null,
+      "chainshield_flagged": 77
+    }
+  },
+  "workflow_layer_actions": {
+    "warn": 2174,
+    "allow": 481,
+    "block": 67
+  },
+  "any_rule_flagged": 2241,
+  "critical_findings_workflows": 67
+}
+--- done in 21s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 07_figures_and_summary.py
+{
+ "total": 13444,
+ "malicious": 6420,
+ "benign": 7024,
+ "unique_packages": 11309,
+ "train": 10852,
+ "test": 2592,
+ "benign_in_top8000_exact": 21,
+ "malicious_in_top8000_exact": 26,
+ "malicious_publish_years": {
+  "2011": 1,
+  "2012": 4,
+  "2013": 2,
+  "2014": 10,
+  "2015": 15,
+  "2016": 17,
+  "2017": 69,
+  "2018": 56,
+  "2019": 64,
+  "2020": 26,
+  "2021": 825,
+  "2022": 1642,
+  "2023": 1717,
+  "2024": 1698,
+  "2025": 3
+ },
+ "malicious_with_timestamp": 6149,
+ "install_script_malicious": 5291,
+ "install_script_benign": 123
+}
+figures written to C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\research\results\figures
+--- done in 2s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe 08_case_studies.py
+CS1_typosquat_training-leder {'rule_score': 0.88, 'ml_score': 0.874, 'score': 0.875, 'action': 'block', 'policy': 'package-v3-1.0.0', 'mandatory': [], 'triggers': ['typosquatting', 'baseline_drift']}
+CS1_control_training-ledger {'rule_score': 0.05, 'ml_score': 0.808, 'score': 0.25, 'action': 'allow', 'policy': 'package-v3-1.0.0', 'mandatory': [], 'triggers': []}
+CS2_confusion_declared_internal {'rule_score': 0.92, 'ml_score': 0.989, 'score': 0.968, 'action': 'block', 'policy': 'package-v3-1.0.0', 'mandatory': ['approved_registry_violation'], 'triggers': ['dependency_confusion', 'baseline_drift']}
+CS2_same_without_declaration {'rule_score': 0.05, 'ml_score': 0.989, 'score': 0.25, 'action': 'allow', 'policy': 'package-v3-1.0.0', 'mandatory': [], 'triggers': []}
+CS3_vulnerable_workflow {'rule_score': 0.95, 'ml_score': None, 'score': 0.95, 'action': 'block', 'policy': 'workflow-rules-1.0.0', 'mandatory': ['critical_workflow_finding'], 'triggers': ['ci_cd_injection', 'baseline_drift']}
+CS3_hardened_workflow {'rule_score': 0.05, 'ml_score': None, 'score': 0.05, 'action': 'allow', 'policy': 'workflow-rules-1.0.0', 'mandatory': [], 'triggers': []}
+--- done in 1s
+
+=== C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider
+........................................................................ [ 33%]
+........................................................................ [ 66%]
+........................................................................ [ 99%]
+..                                                                       [100%]
+============================== warnings summary ===============================
+..\.venv\Lib\site-packages\starlette\testclient.py:37
+  C:\Users\carlp\Desktop\ChainSheild\ChainShield-camera-ready\code\.venv\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+218 passed, 1 warning in 4.06s
+--- done in 5s
+
+wrote results/MANIFEST.sha256 (30 files)
+exit 0

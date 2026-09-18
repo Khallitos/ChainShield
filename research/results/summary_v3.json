@@ -1,0 +1,193 @@
+{
+  "dataset": {
+    "total": 13444,
+    "malicious": 6420,
+    "benign": 7024,
+    "unique_packages": 11309,
+    "train": 10852,
+    "test": 2592,
+    "benign_in_top8000_exact": 21,
+    "malicious_in_top8000_exact": 26,
+    "malicious_publish_years": {
+      "2011": 1,
+      "2012": 4,
+      "2013": 2,
+      "2014": 10,
+      "2015": 15,
+      "2016": 17,
+      "2017": 69,
+      "2018": 56,
+      "2019": 64,
+      "2020": 26,
+      "2021": 825,
+      "2022": 1642,
+      "2023": 1717,
+      "2024": 1698,
+      "2025": 3
+    },
+    "malicious_with_timestamp": 6149,
+    "install_script_malicious": 5291,
+    "install_script_benign": 123
+  },
+  "parity": {
+    "packages_compared": 600,
+    "packages_same_file_set": 558,
+    "min_agreement_same_file_set_excluding_urls": 0.9785
+  },
+  "selected_family": "RandomForest",
+  "selected_policy": {
+    "rule_weight": 0.3,
+    "ml_weight": 0.7,
+    "warn": 0.34,
+    "block": 0.38,
+    "oof_f1_at_warn": 0.9728
+  },
+  "test_arms": {
+    "rules_only_warn_or_block": {
+      "precision": 0.8553,
+      "recall": 0.3246,
+      "f1": 0.4706,
+      "accuracy": 0.6562,
+      "confusion": [
+        [
+          1305,
+          67
+        ],
+        [
+          824,
+          396
+        ]
+      ],
+      "pr_auc": 0.6364
+    },
+    "rules_only_block": {
+      "precision": 0.8553,
+      "recall": 0.3246,
+      "f1": 0.4706,
+      "accuracy": 0.6562,
+      "confusion": [
+        [
+          1305,
+          67
+        ],
+        [
+          824,
+          396
+        ]
+      ]
+    },
+    "ml_only": {
+      "precision": 0.9966,
+      "recall": 0.9566,
+      "f1": 0.9762,
+      "accuracy": 0.978,
+      "confusion": [
+        [
+          1368,
+          4
+        ],
+        [
+          53,
+          1167
+        ]
+      ],
+      "pr_auc": 0.9977
+    },
+    "hybrid_warn_or_block": {
+      "precision": 0.9891,
+      "recall": 0.9631,
+      "f1": 0.9759,
+      "accuracy": 0.9776,
+      "confusion": [
+        [
+          1359,
+          13
+        ],
+        [
+          45,
+          1175
+        ]
+      ],
+      "pr_auc": 0.9968
+    },
+    "hybrid_block": {
+      "precision": 0.9923,
+      "recall": 0.9525,
+      "f1": 0.972,
+      "accuracy": 0.9742,
+      "confusion": [
+        [
+          1363,
+          9
+        ],
+        [
+          58,
+          1162
+        ]
+      ]
+    }
+  },
+  "test_per_1000": {
+    "malicious": {
+      "block": 952.5,
+      "warn": 10.7,
+      "allow": 36.9
+    },
+    "benign": {
+      "block": 6.6,
+      "warn": 2.9,
+      "allow": 990.5
+    }
+  },
+  "workflow": {
+    "workflows_evaluated": 2722,
+    "workflows_with_zizmor_output": 2438,
+    "per_rule": {
+      "RULE-01": {
+        "weakness_class": "injection-weakness",
+        "chainshield_flagged": 30,
+        "zizmor_flagged": 432,
+        "both": 30,
+        "precision_vs_zizmor": 1.0,
+        "recall_vs_zizmor": 0.0694,
+        "cohen_kappa": 0.1094
+      },
+      "RULE-02": {
+        "weakness_class": "privileged-trigger-weakness",
+        "chainshield_flagged": 37,
+        "zizmor_flagged": 184,
+        "both": 37,
+        "precision_vs_zizmor": 1.0,
+        "recall_vs_zizmor": 0.2011,
+        "cohen_kappa": 0.3176
+      },
+      "RULE-03": {
+        "weakness_class": "unpinned-dependency-weakness",
+        "chainshield_flagged": 1931,
+        "zizmor_flagged": 959,
+        "both": 921,
+        "precision_vs_zizmor": 0.477,
+        "recall_vs_zizmor": 0.9604,
+        "cohen_kappa": 0.2355
+      },
+      "RULE-04": {
+        "weakness_class": "excessive-permission-weakness",
+        "chainshield_flagged": 1116,
+        "zizmor_flagged": 1046,
+        "both": 930,
+        "precision_vs_zizmor": 0.8333,
+        "recall_vs_zizmor": 0.8891,
+        "cohen_kappa": 0.7492
+      },
+      "RULE-05": {
+        "weakness_class": null,
+        "chainshield_flagged": 77
+      }
+    },
+    "workflow_layer_actions": {
+      "warn": 2174,
+      "allow": 481,
+      "block": 67
+    }
+  }
+}

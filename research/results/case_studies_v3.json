@@ -1,0 +1,69 @@
+{
+  "CS1_typosquat_training-leder": {
+    "rule_score": 0.88,
+    "ml_score": 0.874,
+    "score": 0.875,
+    "action": "block",
+    "policy": "package-v3-1.0.0",
+    "mandatory": [],
+    "triggers": [
+      "typosquatting",
+      "baseline_drift"
+    ]
+  },
+  "CS1_control_training-ledger": {
+    "rule_score": 0.05,
+    "ml_score": 0.808,
+    "score": 0.25,
+    "action": "allow",
+    "policy": "package-v3-1.0.0",
+    "mandatory": [],
+    "triggers": []
+  },
+  "CS2_confusion_declared_internal": {
+    "rule_score": 0.92,
+    "ml_score": 0.989,
+    "score": 0.968,
+    "action": "block",
+    "policy": "package-v3-1.0.0",
+    "mandatory": [
+      "approved_registry_violation"
+    ],
+    "triggers": [
+      "dependency_confusion",
+      "baseline_drift"
+    ]
+  },
+  "CS2_same_without_declaration": {
+    "rule_score": 0.05,
+    "ml_score": 0.989,
+    "score": 0.25,
+    "action": "allow",
+    "policy": "package-v3-1.0.0",
+    "mandatory": [],
+    "triggers": []
+  },
+  "CS3_vulnerable_workflow": {
+    "rule_score": 0.95,
+    "ml_score": null,
+    "score": 0.95,
+    "action": "block",
+    "policy": "workflow-rules-1.0.0",
+    "mandatory": [
+      "critical_workflow_finding"
+    ],
+    "triggers": [
+      "ci_cd_injection",
+      "baseline_drift"
+    ]
+  },
+  "CS3_hardened_workflow": {
+    "rule_score": 0.05,
+    "ml_score": null,
+    "score": 0.05,
+    "action": "allow",
+    "policy": "workflow-rules-1.0.0",
+    "mandatory": [],
+    "triggers": []
+  }
+}
