@@ -31,7 +31,14 @@ function applyCompositeResult(data, setters) {
   });
 }
 
-export function useScanRunner({ defenseApi, selectedRepo, artifacts, loadingArtifacts, onGitHubDisconnected }) {
+export function useScanRunner({
+  defenseApi,
+  selectedRepo,
+  artifacts,
+  loadingArtifacts,
+  labDemoActive = false,
+  onGitHubDisconnected,
+}) {
   const [manifestReport, setManifestReport] = useState(null);
   const [sbomReport, setSbomReport] = useState(null);
   const [workflowReport, setWorkflowReport] = useState(null);
@@ -73,19 +80,25 @@ export function useScanRunner({ defenseApi, selectedRepo, artifacts, loadingArti
         demoFallback: !(artifacts.dependency_count || artifacts.workflow),
       };
     }
-    return {
-      dependencies: DEMO_ATTACK_DEPS,
-      sbom: DEMO_SBOM,
-      workflow: DEMO_WORKFLOW,
-      fromGitHub: false,
-      manifestPath: null,
-      workflowPath: null,
-      demoFallback: true,
-    };
-  }, [selectedRepo, artifacts]);
+    if (labDemoActive) {
+      return {
+        dependencies: DEMO_ATTACK_DEPS,
+        sbom: DEMO_SBOM,
+        workflow: DEMO_WORKFLOW,
+        fromGitHub: false,
+        manifestPath: null,
+        workflowPath: null,
+        demoFallback: true,
+      };
+    }
+    return null;
+  }, [selectedRepo, artifacts, labDemoActive]);
 
   // Once the backend has answered for this target, its metadata says what was really scanned.
   const scanPayload = useMemo(() => {
+    if (!requestPayload) {
+      return { fromGitHub: false, demoFallback: false };
+    }
     const meta = scanMetadata?.metadata;
     if (!meta || resultSource !== scanSource) return requestPayload;
     return {
@@ -121,6 +134,18 @@ export function useScanRunner({ defenseApi, selectedRepo, artifacts, loadingArti
   );
 
   const runScan = useCallback(async () => {
+    if (!selectedRepo?.owner && !selectedRepo?.name && !labDemoActive) {
+      clearResults();
+      setLoading(false);
+      setError(null);
+      return;
+    }
+    if (!requestPayload) {
+      clearResults();
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(null);
     if (resultSourceRef.current !== scanSource) clearResults();
@@ -179,7 +204,16 @@ export function useScanRunner({ defenseApi, selectedRepo, artifacts, loadingArti
     } finally {
       setLoading(false);
     }
-  }, [defenseApi, requestPayload, scanSource, selectedRepo, setters, clearResults, onGitHubDisconnected]);
+  }, [
+    defenseApi,
+    requestPayload,
+    scanSource,
+    selectedRepo,
+    labDemoActive,
+    setters,
+    clearResults,
+    onGitHubDisconnected,
+  ]);
 
   useEffect(() => {
     let cancelled = false;
@@ -190,7 +224,7 @@ export function useScanRunner({ defenseApi, selectedRepo, artifacts, loadingArti
     return () => {
       cancelled = true;
     };
-  }, [defenseApi, selectedRepo?.owner, selectedRepo?.name]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [defenseApi, selectedRepo?.owner, selectedRepo?.name, labDemoActive]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const allFindings = useMemo(() => {
     if (manifestReport || sbomReport || workflowReport) {

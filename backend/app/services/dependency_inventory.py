@@ -359,6 +359,18 @@ def collect_dependency_inventory(
     return result
 
 
+def empty_dependency_inventory(defense_mode: DefenseMode = DefenseMode.HYBRID) -> Dict[str, Any]:
+    """Placeholder inventory when GitHub is not connected and lab demo was not requested."""
+    return {
+        "ok": True,
+        "dependencies": [],
+        "stats": _build_stats([], 0, 0),
+        "defense_mode": defense_mode.value,
+        "demo": False,
+        "empty": True,
+    }
+
+
 def demo_dependency_inventory(defense_mode: DefenseMode = DefenseMode.HYBRID) -> Dict[str, Any]:
     demo = [
         ("npm", "training-leder", "1.0.0", "production"),

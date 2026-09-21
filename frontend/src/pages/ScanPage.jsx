@@ -13,13 +13,14 @@ import { useMlModel } from "../hooks/useMlModel.js";
 
 export default function ScanPage({ onNavigate }) {
   const { config } = useDefenseMode();
-  const { selectedRepo, artifacts, loadingArtifacts, refreshStatus } = useGitHub();
+  const { selectedRepo, artifacts, loadingArtifacts, refreshStatus, showLabDemo } = useGitHub();
 
   const scan = useScanRunner({
     defenseApi: config.api,
     selectedRepo,
     artifacts,
     loadingArtifacts,
+    labDemoActive: showLabDemo,
     onGitHubDisconnected: refreshStatus,
   });
 

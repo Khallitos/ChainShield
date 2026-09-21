@@ -8,6 +8,7 @@ from app.schemas.scan_report import DefenseMode
 from app.services.dependency_inventory import (
     collect_dependency_inventory,
     demo_dependency_inventory,
+    empty_dependency_inventory,
     get_cached_inventory,
 )
 from app.services import github_client
@@ -186,7 +187,11 @@ def _scan_findings(
     owner: Optional[str],
     name: Optional[str],
     token: Optional[str],
+    demo: bool = False,
 ) -> List[Dict[str, Any]]:
+    if not demo and not (owner and name and token):
+        return []
+
     dependencies = dict(DEMO_ATTACK_DEPS)
     sbom = DEMO_SBOM
     workflow = DEMO_WORKFLOW
@@ -246,8 +251,10 @@ def build_overview_dashboard(
     repo: Optional[str] = None,
 ) -> Dict[str, Any]:
     inventory: Dict[str, Any]
-    if demo or not token:
+    if demo:
         inventory = demo_dependency_inventory(defense_mode)
+    elif not token:
+        inventory = empty_dependency_inventory(defense_mode)
     else:
         if use_cache:
             cached = get_cached_inventory(token, max_repos, defense_mode, fast)
@@ -272,6 +279,7 @@ def build_overview_dashboard(
         owner=owner,
         name=repo,
         token=token,
+        demo=demo,
     )
     inv_findings = _inventory_alert_findings(dependencies)
 
@@ -289,7 +297,7 @@ def build_overview_dashboard(
     return {
         "ok": True,
         "defense_mode": defense_mode.value,
-        "source": f"{owner}/{repo}" if owner and repo else ("demo" if demo or not token else "github"),
+        "source": f"{owner}/{repo}" if owner and repo else ("demo" if demo else ("empty" if not token else "github")),
         "dependencies": {
             "total": stats.get("total") or len(dependencies),
             "stats": stats,

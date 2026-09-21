@@ -284,7 +284,9 @@ def github_dependencies(
 
     token = _resolve_token(request)
     if not token:
-        return demo_dependency_inventory(mode)
+        from app.services.dependency_inventory import empty_dependency_inventory
+
+        return empty_dependency_inventory(mode)
 
     if not refresh:
         cached = get_cached_inventory(token, max_repos, mode, fast)

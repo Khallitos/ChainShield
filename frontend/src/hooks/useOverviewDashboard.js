@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../UTILS/api.js";
 
-export function useOverviewDashboard({ defenseApi, selectedRepo, refreshKey = 0 }) {
+export function useOverviewDashboard({ defenseApi, selectedRepo, labDemoActive = false, refreshKey = 0 }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,6 +16,7 @@ export function useOverviewDashboard({ defenseApi, selectedRepo, refreshKey = 0 
           : selectedRepo?.owner?.login;
       const payload = await api.overviewDashboard({
         defenseMode: defenseApi,
+        demo: labDemoActive,
         owner,
         repo: selectedRepo?.name,
       });
@@ -26,7 +27,7 @@ export function useOverviewDashboard({ defenseApi, selectedRepo, refreshKey = 0 
     } finally {
       setLoading(false);
     }
-  }, [defenseApi, selectedRepo?.owner, selectedRepo?.name]);
+  }, [defenseApi, labDemoActive, selectedRepo?.owner, selectedRepo?.name]);
 
   useEffect(() => {
     load();

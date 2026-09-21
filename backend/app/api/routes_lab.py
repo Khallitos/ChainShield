@@ -94,8 +94,11 @@ async def receive_install_alert(
 
 
 @router.get("/install-alerts")
-def list_install_alerts(limit: int = Query(default=50, ge=1, le=200)) -> dict:
-    """Return the last N install alerts received since server start."""
+def list_install_alerts(
+    limit: int = Query(default=50, ge=1, le=200),
+    _: None = Depends(require_operator),
+) -> dict:
+    """Return install alerts for this server process (operator-only; no cross-user replay)."""
     tail = _install_alerts[-limit:]
     return {"count": len(tail), "alerts": list(reversed(tail))}
 
@@ -140,10 +143,8 @@ async def ws_install_alerts(websocket: WebSocket) -> None:
     await websocket.accept()
     _alert_subscribers.append(websocket)
     try:
-        # Hydrate with existing alerts on connect
-        await websocket.send_text(
-            json.dumps({"type": "history", "data": list(reversed(_install_alerts))})
-        )
+        # Do not replay alerts from other lab sessions; only stream events after connect.
+        await websocket.send_text(json.dumps({"type": "history", "data": []}))
         # Keep the connection alive; client sends pings as needed
         while True:
             await asyncio.sleep(30)

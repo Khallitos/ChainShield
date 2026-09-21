@@ -11,6 +11,8 @@ export default function RepoSelector({ onNavigate }) {
     isConnected,
     user,
     selectRepo,
+    enableLabDemo,
+    showLabDemo,
     loadRepos,
   } = useGitHub();
 
@@ -31,7 +33,7 @@ export default function RepoSelector({ onNavigate }) {
   );
 
   const label = selectedRepo?.full_name
-    || (isConnected ? `All repositories (${repos.length})` : "Connect GitHub");
+    || (showLabDemo ? "Lab demo data" : isConnected ? `All repositories (${repos.length})` : "Connect GitHub");
 
   function openConnect() {
     setOpen(false);
@@ -45,7 +47,7 @@ export default function RepoSelector({ onNavigate }) {
         className="topbar-btn topbar-select repo-selector-trigger"
         onClick={() => {
           if (!isConnected) {
-            openConnect();
+            setOpen((v) => !v);
             return;
           }
           setOpen((v) => !v);
@@ -57,6 +59,28 @@ export default function RepoSelector({ onNavigate }) {
         <span className="repo-selector-label">{label}</span>
         <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 4.5L6 7.5L9 4.5" /></svg>
       </button>
+
+      {open && !isConnected && (
+        <div className="repo-dropdown">
+          <div className="repo-dropdown-list">
+            <button type="button" className="repo-option" onClick={openConnect}>
+              <strong>Connect GitHub</strong>
+              <span>Scan your repositories</span>
+            </button>
+            <button
+              type="button"
+              className={`repo-option ${showLabDemo ? "active" : ""}`}
+              onClick={() => {
+                enableLabDemo();
+                setOpen(false);
+              }}
+            >
+              <strong>Lab demo data</strong>
+              <span>Built-in ATK scenarios without GitHub</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       {open && isConnected && (
         <div className="repo-dropdown">
@@ -74,14 +98,26 @@ export default function RepoSelector({ onNavigate }) {
           <div className="repo-dropdown-list">
             <button
               type="button"
-              className={`repo-option ${!selectedRepo ? "active" : ""}`}
+              className={`repo-option ${showLabDemo ? "active" : ""}`}
+              onClick={() => {
+                enableLabDemo();
+                setOpen(false);
+              }}
+            >
+              <strong>Lab demo data</strong>
+              <span>Built-in ATK scenarios (opt-in; not shown by default)</span>
+            </button>
+
+            <button
+              type="button"
+              className={`repo-option ${!selectedRepo && !showLabDemo ? "active" : ""}`}
               onClick={() => {
                 selectRepo(null);
                 setOpen(false);
               }}
             >
-              <strong>Lab demo data</strong>
-              <span>Use built-in attack scenarios</span>
+              <strong>All repositories</strong>
+              <span>Aggregate inventory across your GitHub repos</span>
             </button>
 
             {loadingRepos && <p className="repo-dropdown-empty">Loading repositories…</p>}

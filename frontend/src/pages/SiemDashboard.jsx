@@ -7,13 +7,14 @@ import SocketOverviewLayout from "../Components/dashboard/SocketOverviewLayout.j
 
 export default function SiemDashboard({ onNavigate, showFindings, onShowFindings }) {
   const { blockingEnabled, config } = useDefenseMode();
-  const { selectedRepo, artifacts, loadingArtifacts } = useGitHub();
+  const { selectedRepo, artifacts, loadingArtifacts, showLabDemo } = useGitHub();
 
   const scan = useScanRunner({
     defenseApi: config.api,
     selectedRepo,
     artifacts,
     loadingArtifacts,
+    labDemoActive: showLabDemo,
   });
 
   useScanNotifications(scan);
@@ -21,6 +22,7 @@ export default function SiemDashboard({ onNavigate, showFindings, onShowFindings
   const overview = useOverviewDashboard({
     defenseApi: config.api,
     selectedRepo,
+    labDemoActive: showLabDemo,
     refreshKey: scan.lastRunAt?.getTime?.() || 0,
   });
 

@@ -29,7 +29,9 @@ def get_overview_dashboard(
         mode = DefenseMode.HYBRID
 
     token = _resolve_token(request)
-    use_demo = demo or not token
+    # Lab demo inventory is opt-in (`demo=true`). Without GitHub and without that flag,
+    # the dashboard stays empty so one developer never sees another's demo session.
+    use_demo = demo
 
     return build_overview_dashboard(
         token=token,

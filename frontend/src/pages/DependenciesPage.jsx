@@ -56,7 +56,7 @@ function formatCount(n) {
 
 export default function DependenciesPage({ onNavigate, onOpenPackage }) {
   const { config } = useDefenseMode();
-  const { isConnected } = useGitHub();
+  const { isConnected, showLabDemo } = useGitHub();
   const [data, setData] = useState(() => readCache(config.api));
   const [loading, setLoading] = useState(!readCache(config.api));
   const [refreshing, setRefreshing] = useState(false);
@@ -83,7 +83,7 @@ export default function DependenciesPage({ onNavigate, onOpenPackage }) {
     }, 400);
 
     try {
-      const res = await api.githubDependencies(config.api, !isConnected, refresh);
+      const res = await api.githubDependencies(config.api, showLabDemo && !isConnected, refresh);
       setProgress(100);
       setData(res);
       writeCache(config.api, res);
@@ -96,16 +96,22 @@ export default function DependenciesPage({ onNavigate, onOpenPackage }) {
       setRefreshing(false);
       setLoadPhase("done");
     }
-  }, [config.api, isConnected, data?.dependencies?.length]);
+  }, [config.api, isConnected, showLabDemo, data?.dependencies?.length]);
 
   useEffect(() => {
+    if (!isConnected && !showLabDemo) {
+      setData(null);
+      setLoading(false);
+      setError(null);
+      return;
+    }
     const cached = readCache(config.api);
-    if (cached) {
+    if (cached && (isConnected || showLabDemo)) {
       setData(cached);
       setLoading(false);
     }
     load(false);
-  }, [config.api, isConnected]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [config.api, isConnected, showLabDemo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const filtered = useMemo(() => {
     if (!data?.dependencies) return [];
@@ -145,11 +151,14 @@ export default function DependenciesPage({ onNavigate, onOpenPackage }) {
     });
   }
 
-  if (!isConnected && !loading && !data?.dependencies?.length) {
+  if (!isConnected && !showLabDemo && !loading && !data?.dependencies?.length) {
     return (
       <div className="deps-page page-shell">
         <h1 className="page-title">Dependencies</h1>
-        <p className="deps-page-sub">Connect GitHub to inventory npm and pip dependencies across your repositories.</p>
+        <p className="deps-page-sub">
+          Connect GitHub to inventory npm and pip dependencies across your repositories, or choose{" "}
+          <strong>Lab demo data</strong> from the repo menu in the top bar.
+        </p>
         <GitHubConnectPanel />
       </div>
     );

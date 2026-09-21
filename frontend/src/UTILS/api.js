@@ -190,12 +190,21 @@ export const api = {
   runScheduledScanNow: () =>
     apiFetch("/settings/scheduled-scan/run-now", { method: "POST" }),
 
-  overviewDashboard: ({ defenseMode = "hybrid", maxRepos = 50, fast = true, refresh = false, owner, repo } = {}) => {
+  overviewDashboard: ({
+    defenseMode = "hybrid",
+    maxRepos = 50,
+    fast = true,
+    refresh = false,
+    demo = false,
+    owner,
+    repo,
+  } = {}) => {
     const params = new URLSearchParams({
       defense_mode: defenseMode,
       max_repos: String(maxRepos),
       fast: fast ? "true" : "false",
       refresh: refresh ? "true" : "false",
+      demo: demo ? "true" : "false",
     });
     if (owner) params.set("owner", owner);
     if (repo) params.set("repo", repo);
