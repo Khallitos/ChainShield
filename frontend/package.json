@@ -14,7 +14,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.7",
-    "@mui/x-charts": "^7.4.0"
+    "@mui/x-charts": "^9.15.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
